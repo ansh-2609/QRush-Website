@@ -7,6 +7,7 @@ const appRouter = require('./routes/appRouter');
 const authRouter = require('./routes/authRouter');
 const MySQLStore = require('express-mysql-session')(session);
 require('dotenv').config();
+const db = require('./utils/databaseUtils');
 
 const app = express();
 
@@ -50,6 +51,15 @@ app.use(session({
   }
 }));
 
+
+db.query('SELECT VERSION() AS version')
+    .then(([rows]) => {
+        console.log('TiDB Connected Successfully!');
+        console.log(rows);
+    })
+    .catch(err => {
+        console.error('Database connection failed:', err);
+    });
 app.use(authRouter);
 
 app.use(appRouter);
