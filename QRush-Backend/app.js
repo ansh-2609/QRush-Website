@@ -15,21 +15,21 @@ const app = express();
 app.set('trust proxy', 1);
 
 
-const options = {
-  host: process.env.DB_HOST,
-  port: Number(process.env.DB_PORT || 4000),
-  user: process.env.DB_USER,
-  password: process.env.DB_PASSWORD,
-  database: process.env.DB_NAME,
+// const options = {
+//   host: process.env.DB_HOST,
+//   port: Number(process.env.DB_PORT || 4000),
+//   user: process.env.DB_USER,
+//   password: process.env.DB_PASSWORD,
+//   database: process.env.DB_NAME,
 
-  ssl: {
-    minVersion: 'TLSv1.2'
-  }
-};
+//   ssl: {
+//     minVersion: 'TLSv1.2'
+//   }
+// };
 
 
-const sessionStore = new MySQLStore(options);
-
+// const sessionStore = new MySQLStore(options);
+const sessionStore = new MySQLStore({}, db);
 app.use(cors({
   origin: [
     "http://localhost:5173",
