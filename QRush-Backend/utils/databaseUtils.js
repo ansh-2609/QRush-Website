@@ -26,12 +26,9 @@ const pool = mysql.createPool({
     database: process.env.DB_NAME,
 
     ssl: {
-        minVersion: 'TLSv1.2'
+        minVersion: 'TLSv1.2',
+        rejectUnauthorized: true
     },
-
-    waitForConnections: true,
-    connectionLimit: 5,
-    queueLimit: 0
 });
 
 module.exports = pool.promise();

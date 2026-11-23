@@ -27,9 +27,22 @@ app.set('trust proxy', 1);
 //   }
 // };
 
+const sessionStore = new MySQLStore({
+    host: process.env.DB_HOST,
+    port: 4000,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+
+    ssl: {
+        minVersion: "TLSv1.2",
+        rejectUnauthorized: true
+    }
+});
+
 
 // const sessionStore = new MySQLStore(options);
-const sessionStore = new MySQLStore({}, db);
+// const sessionStore = new MySQLStore({}, db);
 app.use(cors({
   origin: [
     "http://localhost:5173",
