@@ -58,14 +58,6 @@ app.use(session({
 }));
 
 
-db.query('SELECT VERSION() AS version')
-    .then(([rows]) => {
-        console.log('TiDB Connected Successfully!');
-        console.log(rows);
-    })
-    .catch(err => {
-        console.error('Database connection failed:', err);
-    });
 app.use(authRouter);
 
 app.use(appRouter);
